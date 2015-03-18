@@ -13,6 +13,7 @@
 		AA44AC8E1AB9AC9F0085312A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA44AC8D1AB9AC9F0085312A /* Images.xcassets */; };
 		AA44AC911AB9AC9F0085312A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA44AC8F1AB9AC9F0085312A /* LaunchScreen.xib */; };
 		AA44AC9D1AB9AC9F0085312A /* listDaitemsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44AC9C1AB9AC9F0085312A /* listDaitemsTests.swift */; };
+		AA44ACA91AB9E8350085312A /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44ACA81AB9E8350085312A /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		AA44AC961AB9AC9F0085312A /* listDaitemsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = listDaitemsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA44AC9B1AB9AC9F0085312A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA44AC9C1AB9AC9F0085312A /* listDaitemsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listDaitemsTests.swift; sourceTree = "<group>"; };
+		AA44ACA81AB9E8350085312A /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = ../TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				AA44AC861AB9AC9F0085312A /* AppDelegate.swift */,
 				AA44AC881AB9AC9F0085312A /* ViewController.swift */,
+				AA44ACA81AB9E8350085312A /* TaskCell.swift */,
 				AA44AC8A1AB9AC9F0085312A /* Main.storyboard */,
 				AA44AC8D1AB9AC9F0085312A /* Images.xcassets */,
 				AA44AC8F1AB9AC9F0085312A /* LaunchScreen.xib */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA44AC891AB9AC9F0085312A /* ViewController.swift in Sources */,
+				AA44ACA91AB9E8350085312A /* TaskCell.swift in Sources */,
 				AA44AC871AB9AC9F0085312A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
