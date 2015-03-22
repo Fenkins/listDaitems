@@ -18,10 +18,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let date1 = Date.from(year: 2015, month: 3, day: 15)
+        let date2 = Date.from(year: 2015, month: 3, day: 16)
+        let date3 = Date.from(year: 2015, month: 3, day: 18)
         
-        let task0 = TaskModel(task: "Study French", subtask: "verbs", date: "19/04/2015")
-        let task1 = TaskModel(task: "Eat dinner", subtask: "tasty burger", date: "19/04/2015")
-        let task2 = TaskModel(task: "Exercise", subtask: "watch some vids", date: "19/04/2015")
+        
+        let task0 = TaskModel(task: "Study French", subtask: "verbs", date: date1)
+        let task1 = TaskModel(task: "Eat dinner", subtask: "tasty burger", date: date2)
+        let task2 = TaskModel(task: "Exercise", subtask: "watch some vids", date: date3)
         
         
 //        let task0:Dictionary<String,String> = ["task":"Study French", "subtask":"verbs", "date":"19/04/2015"]
@@ -38,7 +42,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if segue.identifier == "showTaskDetail" {
+            //making a constant type of TaskDetailViewController that perform the segue to it
+            let detailVC:TaskDetailViewController = segue.destinationViewController as TaskDetailViewController
+            //setting the constant for the row selected earlyer
+            let indexPath = self.tableView.indexPathForSelectedRow()
+            //setting the constant to the row of the taskArrayStr
+            let thistask = taskArrayStr[indexPath!.row]
+            //dynamically filling the property of detailTaskModel that is a type of struct of TaskModel with the content of taskArrayStr to use task/subtask/date instances in the future
+            //so we are filling up the rows in the main table view aswell as the taskDetail with the content of the taskArrayStr
+            detailVC.detailTaskModel = thistask
+        }
     }
     // UITableViewDataSource
     
@@ -51,7 +65,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as TaskCell
         cell.task.text = taskStr.task
         cell.subtask.text = taskStr.subtask
-        cell.date.text = taskStr.date
+        cell.date.text = Date.toString(date: taskStr.date)
         return cell
     }
     

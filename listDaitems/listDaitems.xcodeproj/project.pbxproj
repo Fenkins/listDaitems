@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0582311ABE0F180099D870 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0582301ABE0F180099D870 /* Date.swift */; };
 		AA44AC871AB9AC9F0085312A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44AC861AB9AC9F0085312A /* AppDelegate.swift */; };
 		AA44AC891AB9AC9F0085312A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44AC881AB9AC9F0085312A /* ViewController.swift */; };
 		AA44AC8C1AB9AC9F0085312A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA44AC8A1AB9AC9F0085312A /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		AA44AC911AB9AC9F0085312A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA44AC8F1AB9AC9F0085312A /* LaunchScreen.xib */; };
 		AA44AC9D1AB9AC9F0085312A /* listDaitemsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44AC9C1AB9AC9F0085312A /* listDaitemsTests.swift */; };
 		AA44ACA91AB9E8350085312A /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44ACA81AB9E8350085312A /* TaskCell.swift */; };
+		AA78B98C1ABE31BA002F6FE2 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA78B98B1ABE31BA002F6FE2 /* Entitlements.plist */; };
 		AAD6C47D1ABB72D400D381AE /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6C47C1ABB72D400D381AE /* TaskModel.swift */; };
 		AAD6C47F1ABC7C3000D381AE /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6C47E1ABC7C3000D381AE /* TaskDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -29,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA0582301ABE0F180099D870 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		AA44AC811AB9AC9F0085312A /* listDaitems.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = listDaitems.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA44AC851AB9AC9F0085312A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA44AC861AB9AC9F0085312A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		AA44AC9B1AB9AC9F0085312A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA44AC9C1AB9AC9F0085312A /* listDaitemsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listDaitemsTests.swift; sourceTree = "<group>"; };
 		AA44ACA81AB9E8350085312A /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = ../TaskCell.swift; sourceTree = "<group>"; };
+		AA78B98B1ABE31BA002F6FE2 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../Entitlements.plist; sourceTree = "<group>"; };
 		AAD6C47C1ABB72D400D381AE /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		AAD6C47E1ABC7C3000D381AE /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,10 +91,12 @@
 				AA44AC881AB9AC9F0085312A /* ViewController.swift */,
 				AAD6C47E1ABC7C3000D381AE /* TaskDetailViewController.swift */,
 				AA44ACA81AB9E8350085312A /* TaskCell.swift */,
+				AA0582301ABE0F180099D870 /* Date.swift */,
 				AAD6C47C1ABB72D400D381AE /* TaskModel.swift */,
 				AA44AC8A1AB9AC9F0085312A /* Main.storyboard */,
 				AA44AC8D1AB9AC9F0085312A /* Images.xcassets */,
 				AA44AC8F1AB9AC9F0085312A /* LaunchScreen.xib */,
+				AA78B98B1ABE31BA002F6FE2 /* Entitlements.plist */,
 				AA44AC841AB9AC9F0085312A /* Supporting Files */,
 			);
 			path = listDaitems;
@@ -201,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA78B98C1ABE31BA002F6FE2 /* Entitlements.plist in Resources */,
 				AA44AC8C1AB9AC9F0085312A /* Main.storyboard in Resources */,
 				AA44AC911AB9AC9F0085312A /* LaunchScreen.xib in Resources */,
 				AA44AC8E1AB9AC9F0085312A /* Images.xcassets in Resources */,
@@ -222,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA44AC891AB9AC9F0085312A /* ViewController.swift in Sources */,
+				AA0582311ABE0F180099D870 /* Date.swift in Sources */,
 				AA44ACA91AB9E8350085312A /* TaskCell.swift in Sources */,
 				AAD6C47D1ABB72D400D381AE /* TaskModel.swift in Sources */,
 				AA44AC871AB9AC9F0085312A /* AppDelegate.swift in Sources */,
@@ -284,7 +292,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -327,7 +336,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -350,6 +360,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				INFOPLIST_FILE = listDaitems/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -360,6 +373,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				INFOPLIST_FILE = listDaitems/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
