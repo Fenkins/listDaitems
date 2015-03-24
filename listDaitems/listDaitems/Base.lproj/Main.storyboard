@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tasks-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="listDaitems" customModuleProvider="target" sceneMemberID="viewController">
@@ -87,7 +87,13 @@
                             <constraint firstItem="gd3-u2-wVL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="OLx-1d-Ue6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="QhA-1Q-Je1"/>
+                    <navigationItem key="navigationItem" title="Tasks" id="QhA-1Q-Je1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hHq-yf-bJd">
+                            <connections>
+                                <segue destination="6aB-RH-WSF" kind="presentation" identifier="showTaskAdd" id="eXR-HQ-Zaf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="gd3-u2-wVL" id="xjb-Qd-Plk"/>
                         <segue destination="ofc-4E-gea" kind="show" identifier="showTaskDetail" id="O5j-jX-KUl"/>
@@ -97,7 +103,97 @@
             </objects>
             <point key="canvasLocation" x="1213" y="1013"/>
         </scene>
-        <!--Task Detail View Controller-->
+        <!--Add Task View Controller-->
+        <scene sceneID="yvF-pq-wQ9">
+            <objects>
+                <viewController id="6aB-RH-WSF" customClass="AddTaskViewController" customModule="listDaitems" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hQp-H0-ivR"/>
+                        <viewControllerLayoutGuide type="bottom" id="47C-Ij-fu0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RlO-9F-hd6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Vr-Uw-CVi">
+                                <rect key="frame" x="16" y="20" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="6aB-RH-WSF" eventType="touchUpInside" id="EO0-Ps-Uij"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxt-aG-Qsr">
+                                <rect key="frame" x="547" y="20" width="37" height="30"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="AddNewTaskButtonPressed:" destination="6aB-RH-WSF" eventType="touchUpInside" id="wog-Q5-mpT"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4IS-1S-kGu">
+                                <rect key="frame" x="16" y="87" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="myk-cT-PFt">
+                                <rect key="frame" x="16" y="154" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sgf-5F-6Pj">
+                                <rect key="frame" x="16" y="58" width="35" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtask" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vje-1S-ceO">
+                                <rect key="frame" x="16" y="125" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="AsQ-au-hCs">
+                                <rect key="frame" x="0.0" y="192" width="600" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="448734279.91188502">
+                                    <!--2015-03-22 16:24:39 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4IS-1S-kGu" firstAttribute="leading" secondItem="vje-1S-ceO" secondAttribute="leading" id="AHb-AE-CmZ"/>
+                            <constraint firstAttribute="trailing" secondItem="AsQ-au-hCs" secondAttribute="trailing" id="CiU-3O-bCz"/>
+                            <constraint firstItem="8Vr-Uw-CVi" firstAttribute="top" secondItem="hQp-H0-ivR" secondAttribute="bottom" id="FbO-43-C7o"/>
+                            <constraint firstItem="4IS-1S-kGu" firstAttribute="trailing" secondItem="oxt-aG-Qsr" secondAttribute="trailing" id="IE7-Ld-cVc"/>
+                            <constraint firstItem="4IS-1S-kGu" firstAttribute="trailing" secondItem="myk-cT-PFt" secondAttribute="trailing" id="JrP-Vh-fVz"/>
+                            <constraint firstItem="Sgf-5F-6Pj" firstAttribute="leading" secondItem="8Vr-Uw-CVi" secondAttribute="leading" id="PYU-a5-KOp"/>
+                            <constraint firstItem="AsQ-au-hCs" firstAttribute="leading" secondItem="RlO-9F-hd6" secondAttribute="leading" id="U0M-DO-hN5"/>
+                            <constraint firstItem="myk-cT-PFt" firstAttribute="leading" secondItem="vje-1S-ceO" secondAttribute="leading" id="UGv-is-Elo"/>
+                            <constraint firstItem="8Vr-Uw-CVi" firstAttribute="baseline" secondItem="oxt-aG-Qsr" secondAttribute="baseline" id="atT-nM-X7F"/>
+                            <constraint firstItem="AsQ-au-hCs" firstAttribute="top" secondItem="myk-cT-PFt" secondAttribute="bottom" constant="8" symbolic="YES" id="dcQ-N0-ePd"/>
+                            <constraint firstItem="4IS-1S-kGu" firstAttribute="leading" secondItem="Sgf-5F-6Pj" secondAttribute="leading" id="fjV-Ue-WOI"/>
+                            <constraint firstItem="Sgf-5F-6Pj" firstAttribute="top" secondItem="8Vr-Uw-CVi" secondAttribute="bottom" constant="8" symbolic="YES" id="jBz-sq-pz1"/>
+                            <constraint firstItem="vje-1S-ceO" firstAttribute="top" secondItem="4IS-1S-kGu" secondAttribute="bottom" constant="8" symbolic="YES" id="nA9-bv-H5q"/>
+                            <constraint firstItem="myk-cT-PFt" firstAttribute="top" secondItem="vje-1S-ceO" secondAttribute="bottom" constant="8" symbolic="YES" id="oNR-k4-gj2"/>
+                            <constraint firstItem="vje-1S-ceO" firstAttribute="leading" secondItem="RlO-9F-hd6" secondAttribute="leadingMargin" id="oRH-DM-7FP"/>
+                            <constraint firstItem="4IS-1S-kGu" firstAttribute="top" secondItem="Sgf-5F-6Pj" secondAttribute="bottom" constant="8" symbolic="YES" id="pym-xn-Bjh"/>
+                            <constraint firstItem="myk-cT-PFt" firstAttribute="centerX" secondItem="AsQ-au-hCs" secondAttribute="centerX" id="yAv-qc-jI3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="datePickerOutlet" destination="AsQ-au-hCs" id="k9C-RW-qHw"/>
+                        <outlet property="subtaskTextFieldOutlet" destination="myk-cT-PFt" id="aR7-sS-FKW"/>
+                        <outlet property="taskTextFieldOutlet" destination="4IS-1S-kGu" id="s1s-yE-ouX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5zI-Kp-yT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1786" y="1810"/>
+        </scene>
+        <!--Detail-->
         <scene sceneID="V21-xU-BDa">
             <objects>
                 <viewController id="ofc-4E-gea" customClass="TaskDetailViewController" customModule="listDaitems" customModuleProvider="target" sceneMemberID="viewController">
@@ -139,6 +235,18 @@
                             <constraint firstItem="PI6-2D-IQH" firstAttribute="top" secondItem="6Fn-K3-PNk" secondAttribute="bottom" constant="8" symbolic="YES" id="tG7-JK-mng"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Detail" id="C3r-PX-52R">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6PK-yV-c3S">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="ofc-4E-gea" id="P2l-A3-MMm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="3jf-zH-One">
+                            <connections>
+                                <action selector="doneBarButtonTapped:" destination="ofc-4E-gea" id="aZu-7f-z0J"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="dueDatePicker" destination="wJD-Ib-Krv" id="sab-Qc-6XC"/>
                         <outlet property="subtaskTextField" destination="PI6-2D-IQH" id="9ha-V3-Roy"/>

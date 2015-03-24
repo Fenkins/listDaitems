@@ -35,6 +35,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         taskArrayStr = [task0, task1, task2]
         self.tableView.reloadData()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,7 +56,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let thistask = taskArrayStr[indexPath!.row]
             //dynamically filling the property of detailTaskModel that is a type of struct of TaskModel with the content of taskArrayStr to use task/subtask/date instances in the future
             //so we are filling up the rows in the main table view aswell as the taskDetail with the content of the taskArrayStr
+            //finally that whole thing is building our table with rows. rows are added in the cocoa touch class files like AddTaskViewController and TaskDetailViewController
             detailVC.detailTaskModel = thistask
+        }
+        else if segue.identifier == "showTaskAdd" {
+            let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
+            addTaskVC.mainVC = self
         }
     }
     // UITableViewDataSource

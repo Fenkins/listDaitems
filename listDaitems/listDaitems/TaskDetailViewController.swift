@@ -16,8 +16,10 @@ class TaskDetailViewController: UIViewController {
     
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     
-    
     var detailTaskModel: TaskModel!
+    
+    var mainVC:ViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,5 +35,13 @@ class TaskDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 
+    @IBAction func doneBarButtonTapped(sender: UIBarButtonItem) {
+        var task = TaskModel(task: taskTextField.text, subtask: subtaskTextField.text, date: dueDatePicker.date)
+        mainVC.taskArrayStr[mainVC.tableView.indexPathForSelectedRow()!.row] = task
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 }
