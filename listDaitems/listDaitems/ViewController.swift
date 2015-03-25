@@ -19,8 +19,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let date1 = Date.from(year: 2015, month: 3, day: 15)
-        let date2 = Date.from(year: 2015, month: 3, day: 16)
-        let date3 = Date.from(year: 2015, month: 3, day: 18)
+        let date2 = Date.from(year: 2015, month: 3, day: 14)
+        let date3 = Date.from(year: 2015, month: 3, day: 1)
         
         
         let task0 = TaskModel(task: "Study French", subtask: "verbs", date: date1)
@@ -38,6 +38,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+//        func sortByDate (taskOne:TaskModel, taskTwo:TaskModel) -> Bool {
+//            return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
+//        }
+//        taskArrayStr = taskArrayStr.sorted(sortByDate)
+//      People telling the one above is effectively the same as the one below. Yea. Whatever.
+
+        taskArrayStr = taskArrayStr.sorted{
+            (taskOne:TaskModel, taskTwo:TaskModel) -> Bool in
+            return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
+        }
+        
         self.tableView.reloadData()
     }
 
@@ -86,6 +98,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     performSegueWithIdentifier("showTaskDetail", sender: self)
+        println("row selected",indexPath.row)
+        
     }
+    
+    // Helpers
+    
+    
+    
+    
 }
 
