@@ -12,27 +12,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
     
+    var baseArray:[[TaskModel]] = []
+    
 //    var taskArray:[Dictionary<String,String>] = []
-    var taskArrayStr:[TaskModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let date1 = Date.from(year: 2015, month: 3, day: 15)
-        let date2 = Date.from(year: 2015, month: 3, day: 14)
-        let date3 = Date.from(year: 2015, month: 3, day: 1)
+        var date1 = Date.from(year: 2015, month: 3, day: 15)
+        var date2 = Date.from(year: 2015, month: 3, day: 14)
+        var date3 = Date.from(year: 2015, month: 3, day: 1)
         
         
-        let task0 = TaskModel(task: "Study French", subtask: "verbs", date: date1)
-        let task1 = TaskModel(task: "Eat dinner", subtask: "tasty burger", date: date2)
-        let task2 = TaskModel(task: "Exercise", subtask: "watch some vids", date: date3)
+        var task0 = TaskModel(task: "Study French", subtask: "verbs", date: date1, completed: false)
+        var task1 = TaskModel(task: "Eat dinner", subtask: "tasty burger", date: date2, completed: false)
+        var task2 = TaskModel(task: "Exercise", subtask: "watch some vids", date: date3, completed: false)
         
         
 //        let task0:Dictionary<String,String> = ["task":"Study French", "subtask":"verbs", "date":"19/04/2015"]
 //        println(task0["task"])
 //        let task1:Dictionary<String,String> = ["task":"Eat dinner", "subtask":"tasty burger", "date":"19/04/2015"]
 //        let task2:Dictionary<String,String> = ["task":"Exercise", "subtask":"watch some vids", "date":"19/04/2015"]
-        taskArrayStr = [task0, task1, task2]
+        let taskArrayStr = [task0, task1, task2]
+        
+        var completedArray = [TaskModel(task: "code", subtask: "Task Project", date: date2, completed: true)]
+        
+        baseArray = [taskArrayStr, completedArray]
+        
         self.tableView.reloadData()
     }
     
