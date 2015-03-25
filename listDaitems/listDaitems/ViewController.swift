@@ -73,6 +73,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         println(indexPath.row)
         let taskStr:TaskModel = taskArrayStr[indexPath.row]
         var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as TaskCell
+//      Neither of these work
+//      var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as TaskCell
         cell.task.text = taskStr.task
         cell.subtask.text = taskStr.subtask
         cell.date.text = Date.toString(date: taskStr.date)
