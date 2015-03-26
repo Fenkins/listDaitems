@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddTaskViewController: UIViewController {
 
@@ -42,8 +43,18 @@ class AddTaskViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func AddNewTaskButtonPressed(sender: UIButton) {
-        var task = TaskModel(task: taskTextFieldOutlet.text, subtask: subtaskTextFieldOutlet.text, date: datePickerOutlet.date, completed: false)
-        mainVC.baseArray[0].append(task)
-        dismissViewControllerAnimated(true, completion: nil)
+        let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        let menegedObjectContext = appDelegate.managedObjectContext
+        let entityDescription = NSEntityDescription.entityForName("TaskModel", inManagedObjectContext: managedObjectContext!)
+        let task = TaskModel(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+        
+        task.task = taskTextFieldOutlet.text
+        task.subtask = subtaskTextFieldOutlet.text
+        task.date = datePickerOutlet.date
+        task.completed = false
+        
+        appDelegate.saveContext()
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

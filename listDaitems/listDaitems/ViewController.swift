@@ -19,38 +19,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        var date1 = Date.from(year: 2015, month: 3, day: 15)
-        var date2 = Date.from(year: 2015, month: 3, day: 14)
-        var date3 = Date.from(year: 2015, month: 3, day: 1)
         
-        
-        var task0 = TaskModel(task: "Study French", subtask: "verbs", date: date1, completed: false)
-        var task1 = TaskModel(task: "Eat dinner", subtask: "tasty burger", date: date2, completed: false)
-        var task2 = TaskModel(task: "Exercise", subtask: "watch some vids", date: date3, completed: false)
-        
-        
-//        let task0:Dictionary<String,String> = ["task":"Study French", "subtask":"verbs", "date":"19/04/2015"]
-//        println(task0["task"])
-//        let task1:Dictionary<String,String> = ["task":"Eat dinner", "subtask":"tasty burger", "date":"19/04/2015"]
-//        let task2:Dictionary<String,String> = ["task":"Exercise", "subtask":"watch some vids", "date":"19/04/2015"]
-        let taskArrayStr = [task0, task1, task2]
-        
-        var completedArray = [TaskModel(task: "code", subtask: "Task Project", date: date2, completed: true)]
-        
-        baseArray = [taskArrayStr, completedArray]
-        
-        self.tableView.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        func sortByDate (taskOne:TaskModel, taskTwo:TaskModel) -> Bool {
-//            return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
-//        }
-//        taskArrayStr = taskArrayStr.sorted(sortByDate)
-//      People telling the one above is effectively the same as the one below. Yea. Whatever.
-
         baseArray[0] = baseArray[0].sorted{
             (taskOne:TaskModel, taskTwo:TaskModel) -> Bool in
             return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
