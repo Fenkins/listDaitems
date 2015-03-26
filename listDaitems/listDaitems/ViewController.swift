@@ -51,7 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        taskArrayStr = taskArrayStr.sorted(sortByDate)
 //      People telling the one above is effectively the same as the one below. Yea. Whatever.
 
-        taskArrayStr = taskArrayStr.sorted{
+        baseArray[0] = baseArray[0].sorted{
             (taskOne:TaskModel, taskTwo:TaskModel) -> Bool in
             return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
         }
@@ -71,7 +71,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //setting the constant for the row selected earlyer
             let indexPath = self.tableView.indexPathForSelectedRow()
             //setting the constant to the row of the taskArrayStr
-            let thistask = taskArrayStr[indexPath!.row]
+            let thistask = baseArray[indexPath!.section][indexPath!.row]
             //dynamically filling the property of detailTaskModel that is a type of struct of TaskModel with the content of taskArrayStr to use task/subtask/date instances in the future
             //so we are filling up the rows in the main table view aswell as the taskDetail with the content of the taskArrayStr
             //finally that whole thing is building our table with rows. rows are added in the cocoa touch class files like AddTaskViewController and TaskDetailViewController
@@ -84,18 +84,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     // UITableViewDataSource
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return baseArray.count
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskArrayStr.count
+        return baseArray[section].count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         println(indexPath.row)
-        let taskStr:TaskModel = taskArrayStr[indexPath.row]
+        let thisTask = baseArray[indexPath.section][indexPath.row]
         var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as TaskCell
 //      Neither of these work
 //      var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as TaskCell
-        cell.task.text = taskStr.task
-        cell.subtask.text = taskStr.subtask
-        cell.date.text = Date.toString(date: taskStr.date)
+        cell.task.text = thisTask.task
+        cell.subtask.text = thisTask.subtask
+        cell.date.text = Date.toString(date: thisTask.date)
         return cell
     }
     
@@ -108,6 +112,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "To do"
+        }
+        else {
+            return "Completed"
+        }
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let thisTask = baseArray[indexPath.section][indexPath.row]
+        
+        if indexPath.section == 0 {
+            var newTask = TaskModel(task: thisTask.task, subtask: thisTask.subtask, date: thisTask.date, completed: true)
+            baseArray[1].append(newTask)
+        }
+        else {
+            var newTask = TaskModel(task: thisTask.task, subtask: thisTask.subtask, date: thisTask.date, completed: false)
+            baseArray[0].append(newTask)
+        }
+        baseArray[indexPath.section].removeAtIndex(indexPath.row)
+        tableView.reloadData()
+
+            }
     // Helpers
     
     
