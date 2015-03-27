@@ -10,8 +10,6 @@ import UIKit
 import CoreData
 
 class AddTaskViewController: UIViewController {
-
-    var mainVC:ViewController!
     
     @IBOutlet weak var taskTextFieldOutlet: UITextField!
     @IBOutlet weak var subtaskTextFieldOutlet: UITextField!
@@ -45,8 +43,8 @@ class AddTaskViewController: UIViewController {
     @IBAction func AddNewTaskButtonPressed(sender: UIButton) {
         let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let menegedObjectContext = appDelegate.managedObjectContext
-        let entityDescription = NSEntityDescription.entityForName("TaskModel", inManagedObjectContext: managedObjectContext!)
-        let task = TaskModel(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+        let entityDescription = NSEntityDescription.entityForName("TaskModel", inManagedObjectContext: menegedObjectContext!)
+        let task = TaskModel(entity: entityDescription!, insertIntoManagedObjectContext: menegedObjectContext!)
         
         task.task = taskTextFieldOutlet.text
         task.subtask = subtaskTextFieldOutlet.text
@@ -57,7 +55,7 @@ class AddTaskViewController: UIViewController {
         
         var request = NSFetchRequest(entityName: "TaskModel")
         var error:NSError? = nil
-        var results:NSArray = managedObjectContext!.executeFetchRequest(request,error: &error)!
+        var results:NSArray = menegedObjectContext!.executeFetchRequest(request,error: &error)!
         for res in results {
             println(res)
         }

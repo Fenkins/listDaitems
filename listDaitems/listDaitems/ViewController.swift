@@ -9,31 +9,25 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as AddDelegate).managedObjectContext!
-    var fetchedResultController: NSFetchResultsController = NSFetchedResultsController()
-    
-    var baseArray:[[TaskModel]] = []
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    var fetchedResultController:NSFetchedResultsController = NSFetchedResultsController()
     
 //    var taskArray:[Dictionary<String,String>] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        fetchedResultController = getFetchedResultController()
+        fetchedResultController.delegate = self
+        fetchedResultController.performFetch(nil)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        baseArray[0] = baseArray[0].sorted{
-            (taskOne:TaskModel, taskTwo:TaskModel) -> Bool in
-            return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
-        }
-        
-        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +42,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //setting the constant for the row selected earlyer
             let indexPath = self.tableView.indexPathForSelectedRow()
             //setting the constant to the row of the taskArrayStr
-            let thistask = baseArray[indexPath!.section][indexPath!.row]
+            let thistask = fetchedResultController.objectAtIndexPath(indexPath!) as TaskModel
             //dynamically filling the property of detailTaskModel that is a type of struct of TaskModel with the content of taskArrayStr to use task/subtask/date instances in the future
             //so we are filling up the rows in the main table view aswell as the taskDetail with the content of the taskArrayStr
             //finally that whole thing is building our table with rows. rows are added in the cocoa touch class files like AddTaskViewController and TaskDetailViewController
@@ -56,21 +50,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         else if segue.identifier == "showTaskAdd" {
             let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
-            addTaskVC.mainVC = self
         }
     }
     // UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return baseArray.count
+        return fetchedResultController.sections!.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return baseArray[section].count
+        return fetchedResultController.sections![section].numberOfObjects
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         println(indexPath.row)
-        let thisTask = baseArray[indexPath.section][indexPath.row]
+        let thisTask = fetchedResultController.objectAtIndexPath(indexPath) as TaskModel
         var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as TaskCell
 //      Neither of these work
 //      var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as TaskCell
@@ -103,18 +96,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        let thisTask = baseArray[indexPath.section][indexPath.row]
+        let thisTask = fetchedResultController.objectAtIndexPath(indexPath) as TaskModel
         
         if indexPath.section == 0 {
-            var newTask = TaskModel(task: thisTask.task, subtask: thisTask.subtask, date: thisTask.date, completed: true)
-            baseArray[1].append(newTask)
+            thisTask.completed = true
         }
         else {
-            var newTask = TaskModel(task: thisTask.task, subtask: thisTask.subtask, date: thisTask.date, completed: false)
-            baseArray[0].append(newTask)
+            thisTask.completed = false
         }
-        baseArray[indexPath.section].removeAtIndex(indexPath.row)
+        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
         tableView.reloadData()
+    
+    // NSFetchedResultsControllerDelegate
+    
+    func controllerDidChangeContent(controller:NSFetchedResultsController) {
+            tableView.reloadData()
+        }
 
             }
     // Helpers
@@ -122,11 +119,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func taskFetchResuest() -> NSFetchRequest {
         let fetchRequest = NSFetchRequest(entityName: "TaskModel")
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        let completedDescriptor = NSSortDescriptor(key: "completed", ascending: true)
+        fetchRequest.sortDescriptors = [completedDescriptor, sortDescriptor]
         return fetchRequest
     }
     
-    func g
+    func getFetchedResultController() -> NSFetchedResultsController {
+        fetchedResultController = NSFetchedResultsController (fetchRequest: taskFetchResuest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "completed", cacheName: nil)
+        return fetchedResultController
+    }
     
     
 }
