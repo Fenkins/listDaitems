@@ -55,6 +55,13 @@ class AddTaskViewController: UIViewController {
         
         appDelegate.saveContext()
         
+        var request = NSFetchRequest(entityName: "TaskModel")
+        var error:NSError? = nil
+        var results:NSArray = managedObjectContext!.executeFetchRequest(request,error: &error)!
+        for res in results {
+            println(res)
+        }
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
